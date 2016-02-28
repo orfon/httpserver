@@ -4,12 +4,12 @@ var httpServer = new HttpServer();
 httpServer.enableSessions();
 
 // init the application context
-var appContext = httpServer.serveApplication("/", module.resolve("./app"));
+httpServer.serveApplication("/", module.resolve("./app"));
 // and add a websocket to it
-appContext.addWebSocket("/events", function() {});
+httpServer.serveWebSocket("/events", function() {});
 
 // initialize static file serving
-var staticContext = httpServer.serveStatic("/static", module.resolve("./"), {
+httpServer.serveStatic("/static", module.resolve("./"), {
     "allowDirectoryListing": true
 });
 

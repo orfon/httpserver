@@ -5,10 +5,10 @@ var builder = httpServer.build()
             "name": "test1"
         })
         // serve application
-        .serveApplication("/", module.resolve("./app"))
-        // add websocket - this must be called after serveApplication
-        // as it operates on the current context of the builder
-        .addWebSocket("/websocket", function() {})
+        .serveApplication("/myapp", module.resolve("./app"))
+        // add websockets
+        .serveWebSocket("/websocket", module.resolve('./websocket'))
+        .serveWebSocket("/another-ws", function() {})
         // static file serving
         .serveStatic("/static", module.resolve("./"), {
             "allowDirectoryListing": true
